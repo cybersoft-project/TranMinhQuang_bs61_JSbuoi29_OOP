@@ -94,6 +94,9 @@ export const billValidation = bill=>{
     if (!isNumberFormat(bill)) {
         message+='Nhập sai định dạng' 
     }
+    if (isEmptyValue(bill)) {
+        message += 'Không bỏ trống trường này'
+    }
     return message;
 }
 export const soNgayLamValidation  = soNgayLam=>{

@@ -17,14 +17,27 @@
 </head>
 
 <body>
-    <h1 class="title">Trần Minh Quang</h1>
+    <h1 class="title">Học viện nghiên cứu và giảng dạy by Trần Minh Quang</h1>
     <section class="exercise">
         <div class="container">
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalId">
-                Lauch
-            </button>
+            <div class="row align-items-center mt-0">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary btn-lg col-4" data-bs-toggle="modal" data-bs-target="#modalId">
+                    Thêm người dùng
+                </button>
+                <div class="col-4">
+                    <select
+                        class="form-select form-select-lg"
+                        name="arrange"
+                        id="arrange"
+                    >
+                        <option selected>Sắp xếp tên</option>
+                        <option value="down">Từ a ->  z</option>
+                        <option value="up">Từ z -> a</option>
+                    </select>
+                </div>
+                
+            </div>
 
             <!-- Modal -->
             <div class="modal fade" id="modalId" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
@@ -108,12 +121,8 @@
 
             <div class="mb-3" id="tableUserType">
                 <label for="" class="form-label">Chọn ngành nghề</label>
-                <select
-                    class="form-select form-select-lg"
-                    name=""
-                    id=""
-                >
-                    <option value = 'default' selected>Chọn tất cả</option>
+                <select class="form-select form-select-lg" name="" id="">
+                    <option value='default' selected>Chọn tất cả</option>
                     <option value="student">Học sinh</option>
                     <option value="employee">Nhân viên </option>
                     <option value="customer">Khách hàng</option>

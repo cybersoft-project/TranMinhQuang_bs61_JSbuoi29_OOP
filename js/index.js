@@ -29,7 +29,7 @@ function renderModal() {
     }
 }
 
-function getInfo(userType, isUpdate=false) {
+function getInfo(userType, isUpdate = false) {
     let arrInfoEle = document.querySelectorAll('#userForm input, #userForm select');
     switch (userType) {
         case "student":
@@ -98,7 +98,7 @@ function getLocalStorage() {
     }
 
 }
-function validation(user, isUpdate= false) {
+function validation(user, isUpdate = false) {
 
     let arrEmail = listPerson.listPerson.map(person => {
 
@@ -153,6 +153,8 @@ function validation(user, isUpdate= false) {
 
     for (const key in user) {
         if (arrEleRender.includes(key)) {
+            console.log(key);
+
             document.getElementById(`${key}Help`).innerHTML = eval(`${key}Message`)
         }
     }
@@ -177,7 +179,7 @@ function showInfo(userId) {
     clearHelp();
     clearForm();
     console.log('Day la', userId);
-    
+
     let index = listPerson.findUserIndex(userId);
     let user = listPerson.listPerson[index];
     document.getElementById('updateBtn').removeAttribute('disabled');
@@ -203,6 +205,21 @@ function showInfo(userId) {
     }
 
 }
+function arrangeName(type) {
+    listPerson.listPerson.sort(function (a, b) {
+        var textA = a.name.toUpperCase(); // Chuyển đổi về chữ hoa để so sánh không phân biệt hoa thường
+        var textB = b.name.toUpperCase();
+        let ctrl = type=='up'?1:-1;
+        
+        if (textA < textB) {
+            return ctrl;
+        }
+        if (textA > textB) {
+            return -ctrl;
+        }
+        return 0; // Trường hợp hai giá trị bằng nhau
+    });
+}
 function eventBtnAction() {
 
     document.querySelectorAll('.btn-danger[data-id]').forEach(btn => {
@@ -219,6 +236,11 @@ function eventBtnAction() {
             showInfo(id);
             e.preventDefault();
         })
+    })
+    document.querySelector('#arrange').addEventListener('change', e => {
+        let type = e.target.value;
+        arrangeName(type);
+        document.querySelector('#tableUserType select').dispatchEvent(new Event('change'));
     })
     document.querySelector("#modalUserType select").addEventListener('change', e => {
         let userType = e.target.value;
@@ -242,8 +264,8 @@ function clearForm() {
     document.getElementById('userForm').reset();
     document.querySelector('#modalUserType select').dispatchEvent(new Event('change'));
 }
-function clearHelp(){
-    document.querySelectorAll('small').forEach(ele=>{
+function clearHelp() {
+    document.querySelectorAll('small').forEach(ele => {
         ele.innerHTML = '';
     })
 }
